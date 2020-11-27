@@ -1,0 +1,41 @@
+*,
+*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+/*Vuelve 0 los valores de margen y relleno. Border box hace que margin y pading se agregen por default
+del total determinado*/
+
+html{
+    font-size: 62.5%;  //1rem = 10px; 10px / 16px = 62.5%
+    /*Define la medida de un REM, por lo que no entra en typography*/
+    
+    @include respond(big-desktop) {
+        font-size: 75%;  //1rem = 12px; 12px / 16px = 75%
+    }
+
+    @include respond(tab-land) {
+        font-size: 56.25%;  //1rem = 9px; 9px / 16px = 56.25%
+    }
+
+    @include respond(tab-port) {
+        font-size: 50%;  //1rem = 8px; 8px / 16px = 50%
+    }
+}
+
+body {
+    box-sizing: border-box;
+    padding: 3rem;
+
+    @include respond(tab-port) {
+        padding: 0;
+    }
+}
+
+::selection {
+    background-color: $color-primary;
+    color: $color-white;
+    /*Personaliza lo que ocurre al seleccionar algun elemento*/
+}

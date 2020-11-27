@@ -1,0 +1,60 @@
+.header {
+  height: 95vh;
+  /*porcentaje de vista del viewport. 95% en este caso*/
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ),
+    url(../img/hero-small.jpg);
+  background-size: cover;
+  /*ajusta la imagen al tamaño del viewport*/
+  background-position: top;
+  /*Determina la posicion de la imagen*/
+  background-position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  /*Determina un poligono para recortar una figura. Herramienta en linea https://bennettfeely.com/clippy/*/
+  @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em), only screen and (min-width: 125em) {
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.8),
+        rgba($color-primary-dark, 0.8)
+      ),
+      url(../img/hero.jpg);
+    background-size: cover;
+  }
+  /*Media query con dos condiciones para cambio de imagen dependiendo la resolucion de la pantalla. 
+    192dpi (dots per inch) es la resolucion de una mac de alta resolucion. And requiere que ambas condiciones
+    se cumplan y , funciona como un or*/
+  @include respond(phone) {
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  }
+
+  &__logo-box {
+    position: absolute;
+    top: 5rem;
+    left: 5rem;
+    /*Determina la posicion del logo*/
+  } /*& hace referencia al elemento padre*/
+
+  &__logo {
+    position: relative;
+    top: -57rem;
+    left: 2.5rem;
+    height: 4rem;
+
+    &:hover {
+      animation: rotate 1s;
+    }
+  }
+
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*transform ayuda a delimitar, en este caso, el centro de la caja como punto de referencia para ser ubicada 
+        en el elemento padre*/
+    text-align: center;
+  }
+}

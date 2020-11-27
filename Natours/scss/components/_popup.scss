@@ -1,0 +1,100 @@
+.popup {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba($color-black, 0.8);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  /*Usando opacity y visibility se puede ocultar el elemento y posteriormente agregar animaciones*/
+  transition: all 0.3s;
+  @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur (10px);
+    background-color: rgba($color-black, .3);
+    /*aplica un filtro a los elementos de atras. El support determina que ocurre si se pude aplicar cierta 
+    funcion. Feature queries*/
+  }
+
+  &__content {
+    @include absCenter;
+    width: 75%;
+    background-color: $color-white;
+    box-shadow: 0 2rem 4rem rgba($color-black, 0.2);
+    border-radius: 3px;
+    display: table;
+    /*Hace que el padre se comporte como una tabla*/
+    overflow: hidden;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+    transition: all 0.5s 0.2s;
+    /*El segundo valor es un delay*/
+  }
+
+  &__left {
+    width: 33.333333333%;
+    display: table-cell;
+    /*Cambia el comportamiento de los hijos a celda*/
+  }
+
+  &__right {
+    width: 66.6666666667%;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 3rem 5rem;
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+  }
+
+  &__text {
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+    column-count: 2;
+    /*Determina el numero de columnas para dividir el texto*/
+    column-gap: 4rem;
+    /*Determina espacio entre columnas*/
+    column-rule: 1px solid $color-grey-light-2;
+    /*Dibuja una linea divisoria entre las columnas*/
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    /*Habilita la opcion de poner guiones automaticamente, permitiendo cortar palabras al reacomodarlas*/
+  }
+
+  //OPEN STATE
+  &:target {
+    opacity: 1;
+    visibility: visible;
+    /*Aplica estas propiedades al target despues de ser llamado*/
+  }
+
+  &:target &__content {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &__close {
+    &:link,
+    &:visited {
+      color: $color-grey-dark;
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      font-size: 3rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: all .2s;
+      line-height: 1;
+    }
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}

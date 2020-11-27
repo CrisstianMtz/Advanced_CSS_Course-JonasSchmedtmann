@@ -1,0 +1,15 @@
+.row {
+    max-width: 1140px; /*grid widht*/
+    background-color: #eeeeee;
+    margin: 0 auto;
+    /*centrar bloques de elementos dentro de otro bloque de elementos*/
+}
+
+.row:not(:last-child) {
+    margin-bottom: 80px; /*gutter vertical*/
+    /*60px;*/
+} /*Selecciona todos excepto last child en este caso*/
+
+.col-1-of-2 {
+    width: calc((100% - 60px) / 2);
+}
